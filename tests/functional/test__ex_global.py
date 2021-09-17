@@ -29,7 +29,7 @@ class Test_ex_global(unittest.FunctionalTestCase):
         self.eq('|fizz\nxyz\nbuzz\nfizz\nxyz\nbuzz\n', ':global/^x/d', 'fizz\nbuzz\nfizz\n|buzz\n')
         self.eq('|fizz\nxyz\nbuzz\n', ':global/^./d', '|')
         self.eq('|fizz\nxyz\nbuzz\n', ':global/^/d', '|')
-        self.eq('|fizz\n\nbuzz\n', ':global/^$/d', 'fizz\n|buzz\n')
+        self.eq('|fizz\n\nbuzz\n', ':global/^$/d', 'fizz\nbuz|z\n')
         self.eq('|fizz\n\nbuzz\nfizz\n\n\n\n\n\nbuzz\n', ':global/^$/d', 'fizz\nbuzz\nfizz\n|buzz\n')
         self.eq('|fizz\n\nbuzz\nfizz\n\n\n\n\n\nbuzz\n', ':%global/^$/d', 'fizz\nbuzz\nfizz\n|buzz\n')
         self.eq('|1\n2\n3\n4\n5\n6\n7\n8\n9\n0', ':3,6g/^/d', '1\n2\n|7\n8\n9\n0')
