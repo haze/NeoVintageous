@@ -545,7 +545,7 @@ class nv_feed_key(WindowCommand):
         if mode not in (VISUAL, VISUAL_LINE, VISUAL_BLOCK, SELECT) and self.view.has_non_empty_selection_region():
             mode = _fix_malformed_selection(self.view, mode)
 
-        if key.lower() == '<esc>':
+        if key.lower() in ('<esc>', '<c-[>'):
             if mode == SELECT:
                 self.view.run_command('nv_vi_select_big_j', {'mode': mode})
             else:
