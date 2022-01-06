@@ -773,7 +773,7 @@ List of available settings:
         Plugin: A port of https://github.com/tpope/vim-unimpaired.
 
 'vintageous_handle_keys'                            *'vintageous_handle_keys'*
-                        boolean (default {})
+                        dict (default {})
         Delegate configured keys to be handled by Sublime Text. 
 
         For example to use ctrl+f for find (native ST behaviour):
@@ -823,6 +823,12 @@ List of available settings:
         mode will not quit and delete all existing cursors. Useful if you want
         to go back to Normal mode, and still be able to operate on all the
         cursors.
+
+                                           *'vintageous_on_post_write_ex_cmd'*
+'vintageous_on_post_write_ex_cmd'
+                        string (default null)
+        Ex command to execute on post write e.g. after :write.
+        Example: ":LspSave<CR>"
 
                                  *'vintageous_reset_mode_when_switching_tabs'*
 'vintageous_reset_mode_when_switching_tabs'

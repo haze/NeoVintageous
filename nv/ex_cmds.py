@@ -1209,7 +1209,7 @@ def _do_write(view) -> None:
         ui_bell("E45: 'readonly' option is set (add ! to override)")
         return
 
-    save(view)
+    _write_view(view)
 
 
 def _do_write_file(window, view, file_name: str, forceit: bool, line_range: RangeNode = None) -> None:
@@ -1228,7 +1228,7 @@ def _do_write_file(window, view, file_name: str, forceit: bool, line_range: Rang
             f.write(_get_write_buffer(view, line_range))
 
         view.retarget(file_path)
-        save(window)
+        _write_view(view)
     except IOError:
         ui_bell("E212: Can't open file for writing: {}".format(file_name))
 
@@ -1258,8 +1258,19 @@ def _do_write_append_file(view, file_name: str, forceit: bool, line_range: Range
 
 def _do_write_append(window, view, line_range: RangeNode = None) -> None:
     view.run_command('append', {'characters': _get_write_buffer(view, line_range)})
-    save(view)
+    _write_view(view)
     enter_normal_mode(window, get_mode(view))
+
+
+def _write_view(view) -> None:
+    save(view)
+    on_post_write(view)
+
+
+def on_post_write(view) -> None:
+    on_post_write = get_setting(view, 'on_post_write_ex_cmd')
+    if on_post_write:
+        do_ex_user_cmdline(view.window(), on_post_write)
 
 
 def ex_yank(view, register: str, line_range: RangeNode, **kwargs) -> None:

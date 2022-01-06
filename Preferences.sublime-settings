@@ -150,6 +150,10 @@
     // visual mode the visual mode exits all multiple cursors.
     "vintageous_multi_cursor_exit_from_visual_mode": false,
 
+    // Ex command to execute on post write.
+    // Example: ":LspSave<CR>"
+    "vintageous_on_post_write_ex_cmd": null,
+
     // Reset to normal mode when a tab is activated.
     "vintageous_reset_mode_when_switching_tabs": true,
 
